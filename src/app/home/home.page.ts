@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -7,6 +8,16 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  username: string;
+
+  constructor(private router: Router) {}
+
+  goChatRoom() {
+    if (this.username) {
+      this.router.navigate(['chat-room/' + this.username]);
+    } else {
+      this.router.navigate(['chat-room/anonim']);
+    }
+  }
 
 }

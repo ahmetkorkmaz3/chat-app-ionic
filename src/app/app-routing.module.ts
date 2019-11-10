@@ -14,7 +14,8 @@ const routes: Routes = [
   {
     path: 'list',
     loadChildren: () => import('./list/list.module').then(m => m.ListPageModule)
-  }
+  },
+  { path: 'chat-room/:username', loadChildren: './chat-room/chat-room.module#ChatRoomPageModule' }
 ];
 
 @NgModule({
