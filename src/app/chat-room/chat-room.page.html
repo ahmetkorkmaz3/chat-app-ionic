@@ -6,33 +6,21 @@
 
 <ion-content color="medium">
   
-  <div id="chat">
-    <div id="chat-list">
-      <div class="message left">
-        Ahmet Korkmaz : Merhaba herkese
-      </div>
+  <ion-grid>
+    <ion-row *ngFor="let message of messages">
+
+      <ion-col size="9" *ngIf="message.username !== username" class="message left">
+        <b>{{ message.username }}</b><br>
+        <span>{{ message.message }}</span>
+      </ion-col>
   
-      <div class="message right">
-        Merhaba herkese
-      </div>
-
-      <div class="message right">
-        Merhaba herkese
-      </div>
-
-      <div class="message right">
-        Merhaba herkese
-      </div>
-
-      <div class="message left">
-        Ahmet Korkmaz : Merhaba herkese
-      </div>
-
-      <div class="message left">
-        Ahmet Korkmaz : Merhaba herkese
-      </div>
-    </div>
-  </div>
+      <ion-col offset="3" size="9" *ngIf="message.username === username" class="message right">
+        <b>{{ message.username }}</b><br>
+        <span>{{ message.message }}</span>
+      </ion-col>
+  
+    </ion-row>
+  </ion-grid>
 
 </ion-content>
 

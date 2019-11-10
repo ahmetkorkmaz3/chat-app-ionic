@@ -18,6 +18,8 @@ export class ChatRoomPage implements OnInit {
   users = [];
   messages = [];
 
+  isUserMe: boolean;
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
@@ -31,11 +33,14 @@ export class ChatRoomPage implements OnInit {
 
     this.socket.emit('sign-in', this.username);
 
+    this.subscribeToUsers();
+    this.subscribeToChat();
   }
 
   sendMessage() {
     if (this.messageText && this.algorithm) {
       const data = {
+        username: this.username,
         message: this.messageText,
         algorithm: this.algorithm
       };
@@ -66,15 +71,12 @@ export class ChatRoomPage implements OnInit {
   subscribeToUsers() {
     this.socket.fromEvent('users').subscribe(data => {
       this.users.push(data);
-      console.log(this.users);
-      
     });
   }
 
   subscribeToChat() {
     this.socket.fromEvent('chat').subscribe(data => {
       this.messages.push(data);
-      console.log(this.messages);
     });
   }
 
