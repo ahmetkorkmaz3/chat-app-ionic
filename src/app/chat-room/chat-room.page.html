@@ -38,7 +38,13 @@
 
 <ion-footer>
   <ion-item>
-    <ion-input placeholder="Bir şeyler yazınız..." autofocus="on" required="true"></ion-input>
-    <ion-icon color="success" name="send" slot="end" align-self-center></ion-icon>
+    <ion-input [(ngModel)]="message" placeholder="Bir şeyler yazınız..." autofocus="on" required="true"></ion-input>
+    <ion-select [(ngModel)]="algorithm" placeholder="Algoritma" cancelText="İptal" okText="Seç">
+      <ion-select-option value="sezar" selected>Sezar Algoritması</ion-select-option>
+      <ion-select-option value="m">Male</ion-select-option>
+    </ion-select>
+    <ion-button color="light" size="medium" (click)="sendMessage()">
+      <ion-icon size="medium" color="success" name="send" align-self-center></ion-icon>
+    </ion-button>
   </ion-item>
 </ion-footer>
